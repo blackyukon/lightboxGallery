@@ -1,0 +1,28 @@
+.Gallery {
+    position: absolute;
+    height: 500px;
+    width: 500px;
+    overflow: hidden;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding-bottom: 50px;
+}
+
+.GalleryContainer {
+    display: flex;
+    flex-direction: row;
+    transition: transform 0.4s ease-out;
+}
+
+.GalleryArrow {
+    display: none;
+}
+.ArrowIsVisible {
+    display: inline-block;
+}
+
+img {
+    height: 100%;
+    width: 100%;
+}
