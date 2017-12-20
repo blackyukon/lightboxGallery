@@ -1,31 +1,31 @@
 'use strict';
 
-function LightBoxGallery(node, options) {
+function LightBoxGallery(node) {
     this.node = node;
-    this.options = options;
     this.captions = [];
     this.totalWidth = 0;
     this.itemWidth = 0;
     this.sliderIndex = 0;
+    this.translate = 0;
     this.gallerySelector = node.querySelector('.GalleryContainer');
     this.imgList = node.getElementsByTagName('img');
+    this.captionsSelector = node.querySelector('.GalleryCaptions');
+    this.moveSlider = this.moveSlider.bind(this);
+    this.manageCaptions = this.manageCaptions.bind(this);
+    //////////////////////////////////////////////////////////
     for (var i = 0; i < this.imgList.length; i++) {
         this.captions.push(this.imgList[i].getAttribute("alt"));
     }
-    this.moveSlider = this.moveSlider.bind(this);
-
-    //We initialize the arrows if theres more than one slide
     if (this.imgList.length > 1) {
         //TODO : refactor cleanup this part
-        this.arrows = this.arrows.bind(this);
+        this.prevNext = this.prevNext.bind(this);
         this.arrowsItems = {
             arrowNext: this.node.querySelector('.ArrowNext'),
             arrowPrev: this.node.querySelector('.ArrowPrev')
         };
-        this.arrowsItems.arrowNext.classList.add('ArrowIsVisible');
-        this.arrowsItems.arrowPrev.classList.add('ArrowIsVisible');
-        this.arrows();
+        this.prevNext();
     }
+    this.manageCaptions();
 }
 
 LightBoxGallery.prototype.init = function () {
@@ -40,43 +40,60 @@ LightBoxGallery.prototype.init = function () {
 };
 
 LightBoxGallery.prototype.moveSlider = function (status) {
-    // var factorPlus = this.itemWidth;
-    // var factorMinus = -this.itemWidth;
-    // (this.sliderIndex >= this.imgList.length) ? console.log('vous etes au bout') : console.log('encore du chemin a faire');
-    // this.gallerySelector.style.transform = "translateX(-" + factorPlus + "px)";
     if (status === "next") {
-        console.log('move next')
+        this.translate += this.itemWidth;
+        this.gallerySelector.style.transform = "translateX(-" + this.translate + "px)";
     } else if (status === "prev") {
-        console.log('move prev')
+        this.translate -= this.itemWidth;
+        this.gallerySelector.style.transform = "translateX(-" + this.translate + "px)";
     }
 };
 
-LightBoxGallery.prototype.arrows = function () {
-    console.log(this);
+LightBoxGallery.prototype.prevNext = function () {
     var self = this;
     var a = this.arrowsItems.arrowNext;
     var b = this.arrowsItems.arrowPrev;
+    displayArrows();
     a.addEventListener('click', function () {
         self.moveSlider("next");
         self.setSliderIndex("next");
-        if (self.sliderIndex === self.imgList.length) a.classList.remove('ArrowIsVisible');
+        displayArrows();
+        self.manageCaptions();
     });
     b.addEventListener('click', function () {
         self.moveSlider("prev");
         self.setSliderIndex("prev");
-        if (self.sliderIndex === 0) b.classList.remove('ArrowIsVisible');
-    })
+        displayArrows();
+        self.manageCaptions();
+    });
+
+    function displayArrows() {
+        if (self.sliderIndex === self.imgList.length - 1) {
+            a.classList.add('ArrowIsHidden');
+        } else if (self.sliderIndex === 0) {
+            b.classList.add('ArrowIsHidden');
+        } else if (self.sliderIndex >= 1) {
+            if (a.classList.contains('ArrowIsHidden')) {
+                a.classList.remove('ArrowIsHidden')
+            }
+            if (b.classList.contains('ArrowIsHidden')) {
+                b.classList.remove('ArrowIsHidden')
+            }
+        }
+    }
 };
 
 LightBoxGallery.prototype.setSliderIndex = function (status) {
-    if(status === "next") {
+    if (status === "next") {
         return this.sliderIndex++;
-    } else if(status === "prev") {
+    } else if (status === "prev") {
         return this.sliderIndex--;
     }
 };
 
-
+LightBoxGallery.prototype.manageCaptions = function () {
+    this.captionsSelector.firstElementChild.innerHTML = this.captions[this.sliderIndex];
+};
 
 
 

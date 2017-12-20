@@ -16,10 +16,10 @@
 }
 
 .GalleryArrow {
-    display: none;
-}
-.ArrowIsVisible {
     display: inline-block;
+}
+.ArrowIsHidden {
+    display: none;
 }
 
 img {
