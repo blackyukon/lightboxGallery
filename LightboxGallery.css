@@ -10,6 +10,7 @@
     width: 100%;
     /*TODO : ADD OBJECT FIT POLYFILL */
     object-fit: contain;
+    font-family: 'object-fit: contain;';
 }
 
 .GalleryArrow {
@@ -56,6 +57,7 @@
     height: 100%;
     width: 100%;
     object-fit: contain;
+    font-family: 'object-fit: contain;';
 }
 
 .LightBoxClose, .LightBoxArrow {
