@@ -1,6 +1,7 @@
 'use strict';
 
 function LightBoxGallery(node) {
+    var self = this;
     this.node = node;
     this.captions = [];
     this.totalWidth = 0;
@@ -10,14 +11,15 @@ function LightBoxGallery(node) {
     this.gallerySelector = node.querySelector('.GalleryContainer');
     this.imgList = node.getElementsByTagName('img');
     this.captionsSelector = node.querySelector('.GalleryCaptions');
+    this.indexSelector = node.querySelector('.GalleryIndex');
     this.moveSlider = this.moveSlider.bind(this);
     this.manageCaptions = this.manageCaptions.bind(this);
+    this.manageIndex = this.manageIndex.bind(this);
     //////////////////////////////////////////////////////////
     for (var i = 0; i < this.imgList.length; i++) {
         this.captions.push(this.imgList[i].getAttribute("alt"));
     }
     if (this.imgList.length > 1) {
-        //TODO : refactor cleanup this part
         this.prevNext = this.prevNext.bind(this);
         this.arrowsItems = {
             arrowNext: this.node.querySelector('.ArrowNext'),
@@ -26,6 +28,10 @@ function LightBoxGallery(node) {
         this.prevNext();
     }
     this.manageCaptions();
+    this.manageIndex();
+    // node.querySelector('.GalleryOpenLightbox').addEventListener('click', function () {
+    //     self.openLightBox();
+    // });
 }
 
 LightBoxGallery.prototype.init = function () {
@@ -59,12 +65,14 @@ LightBoxGallery.prototype.prevNext = function () {
         self.setSliderIndex("next");
         displayArrows();
         self.manageCaptions();
+        self.manageIndex();
     });
     b.addEventListener('click', function () {
         self.moveSlider("prev");
         self.setSliderIndex("prev");
         displayArrows();
         self.manageCaptions();
+        self.manageIndex();
     });
 
     function displayArrows() {
@@ -94,6 +102,16 @@ LightBoxGallery.prototype.setSliderIndex = function (status) {
 LightBoxGallery.prototype.manageCaptions = function () {
     this.captionsSelector.firstElementChild.innerHTML = this.captions[this.sliderIndex];
 };
+
+LightBoxGallery.prototype.manageIndex = function () {
+    this.indexSelector.firstElementChild.innerHTML = parseInt(this.sliderIndex + 1).toString();
+};
+
+LightBoxGallery.prototype.openLightBox = function () {
+    console.log('openLightBox')
+};
+
+
 
 
 
