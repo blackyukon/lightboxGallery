@@ -61,7 +61,6 @@ LightBoxGallery.prototype.init = function () {
     self.itemWidth = self.node.querySelector('img').getBoundingClientRect().width;
     self.totalWidth = self.itemWidth * self.imgList.length;
     self.node.addEventListener('click', self.moveSlider, false);
-    console.warn('galleryReady - preload fix will ensue')
 };
 
 LightBoxGallery.prototype.moveSlider = function (status) {
