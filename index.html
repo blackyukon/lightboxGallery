@@ -5,7 +5,7 @@
     <title>Lightbox</title>
 
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="LIghtboxGallery.css">
+    <link rel="stylesheet" href="LightboxGallery.css">
 </head>
 <body>
 
@@ -13,10 +13,18 @@
 <div class="myGalleryExample">
     <div class="Gallery">
         <div class="GalleryContainer">
-            <img src="http://www.lorempizza.com/1000/1000" alt="this is the caption of the image 1"/>
-            <img src="http://www.lorempizza.com/1000/1000" alt="this is the caption of the image 2"/>
-            <img src="http://www.lorempizza.com/1000/1000" alt="this is the caption of the image 3"/>
-            <img src="http://www.lorempizza.com/1000/1000" alt="this is the caption of the image 4"/>
+            <div class="GalleryRow">
+                <img src="http://www.lorempizza.com/360/780" alt="this is the caption of the image 1"/>
+            </div>
+            <div class="GalleryRow">
+                <img src="http://www.lorempizza.com/1000/500" alt="this is the caption of the image 2"/>
+            </div>
+            <div class="GalleryRow">
+                <img src="http://www.lorempizza.com/500/1000" alt="this is the caption of the image 3"/>
+            </div>
+            <div class="GalleryRow">
+                <img src="http://www.lorempizza.com/1500/800" alt="this is the caption of the image 4"/>
+            </div>
         </div>
         <button class="GalleryArrow ArrowPrev">Previous</button>
         <button class="GalleryArrow ArrowNext">Next</button>
@@ -24,11 +32,16 @@
         <div class="GalleryCaptions"><p></p></div>
         <button class="GalleryOpenLightbox">Enlarge your lightbox</button>
     </div>
-    <!--<div class="Lightbox">-->
-        <!--<div class="LightboxContainer">-->
-            <!--<img src="http://www.lorempizza.com/1000/1000" alt="">-->
-        <!--</div>-->
-    <!--</div>-->
+    <div class="Lightbox">
+        <button class="LightBoxClose">close your lightbox</button>
+        <button class="LightBoxArrow ArrowPrev">Previous</button>
+        <button class="LightBoxArrow ArrowNext">Next</button>
+        <div class="LightboxContainer">
+            <div class="LightboxImgContainer">
+                <img src="http://www.lorempizza.com/500/500" alt="">
+            </div>
+        </div>
+    </div>
 </div>
 
 </body>
