@@ -12,3 +12,6 @@ a gallery and a lightbox
 - [ ] Cleanup and optimization
 - [ ] Refactor to ES6
 - [ ] Npm build function
+- [ ] Add animations
+- [ ] Make a React component
+- [ ] Make a Vue.js component
