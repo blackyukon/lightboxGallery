@@ -33,7 +33,7 @@
     content: '';
     position: absolute;
     z-index: 98;
-    background: #000;
+    background: black;
     height: 100%;
     width: 100%;
     opacity: 0.9;
@@ -65,3 +65,7 @@
     z-index: 98;
 }
 
+.LightboxCaption, .LightboxIndex {
+    position: relative;
+    z-index: 99;
+}

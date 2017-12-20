@@ -15,11 +15,15 @@ function LightBoxGallery(node) {
     this.galleryContainerSelector = node.querySelector('.GalleryContainer');
     this.galleryRowSelector = node.querySelectorAll('.GalleryRow');
     this.imgList = node.getElementsByTagName('img');
-    this.captionsSelector = node.querySelector('.GalleryCaptions');
-    this.indexSelector = node.querySelector('.GalleryIndex');
+    this.galleryCaptionsSelector = node.querySelector('.GalleryCaptions');
+    this.galleryIndexSelector = node.querySelector('.GalleryIndex');
+    //-----------------------------------------------------------
     this.lightboxSelector = node.querySelector('.Lightbox');
+    this.lightboxCaptionsSelector = this.lightboxSelector.querySelector('.LightboxCaption');
+    this.lightboxIndexSelector = this.lightboxSelector.querySelector('.LightboxIndex');
     this.lightBoxImg = this.lightboxSelector.getElementsByTagName('img')[0];
     this.lightboxCloseSelector = this.lightboxSelector.querySelector('.LightBoxClose');
+    //-----------------------------------------------------------
     this.moveSlider = this.moveSlider.bind(this);
     this.manageCaptions = this.manageCaptions.bind(this);
     this.manageIndex = this.manageIndex.bind(this);
@@ -113,11 +117,13 @@ LightBoxGallery.prototype.displayArrows = function () {
 };
 
 LightBoxGallery.prototype.manageCaptions = function () {
-    this.captionsSelector.firstElementChild.innerHTML = this.captions[this.sliderIndex];
+    this.lightboxCaptionsSelector.firstElementChild.innerHTML = this.captions[this.sliderIndex];
+    this.galleryCaptionsSelector.firstElementChild.innerHTML = this.captions[this.sliderIndex];
 };
 
 LightBoxGallery.prototype.manageIndex = function () {
-    this.indexSelector.firstElementChild.innerHTML = parseInt(this.sliderIndex + 1).toString();
+    this.lightboxIndexSelector.firstElementChild.innerHTML = parseInt(this.sliderIndex + 1).toString() + "/" + (this.imgList.length - 1);
+    this.galleryIndexSelector.firstElementChild.innerHTML = parseInt(this.sliderIndex + 1).toString() + "/" + (this.imgList.length - 1);
 };
 
 ///////////////////////////////////////////////////////////////
