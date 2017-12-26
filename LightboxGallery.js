@@ -188,21 +188,3 @@ LightBoxGallery.prototype.openLightBox = function () {
         prev.removeEventListener('click', prevSlide, false);
     }
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
