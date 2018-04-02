@@ -1,9 +1,9 @@
 'use strict';
 
-function LightBoxGallery(node) {
-    if (!node) console.warn('LightBoxGallery - You need to declare a node as parameter');
+function LightBoxGallery(opt) {
+    if (!opt.container) console.warn('LightBoxGallery - You need to declare a node as parameter');
     var self = this;
-    this.node = node;
+    this.node = opt.container;
     this.captions = [];
     this.imgsUrl = [];
     this.totalWidth = 0;
@@ -11,13 +11,13 @@ function LightBoxGallery(node) {
     this.sliderIndex = 0;
     this.translate = 0;
     this.isLightboxOpened = false;
-    this.galleryContainer = node.querySelector('.Gallery');
-    this.galleryContainerSelector = node.querySelector('.GalleryContainer');
-    this.galleryRowSelector = node.querySelectorAll('.GalleryRow');
-    this.imgList = node.getElementsByTagName('img');
-    this.captionsSelector = node.querySelector('.GalleryCaptions');
-    this.indexSelector = node.querySelector('.GalleryIndex');
-    this.lightboxSelector = node.querySelector('.Lightbox');
+    this.galleryContainer = this.node.querySelector('.Gallery');
+    this.galleryContainerSelector = this.node.querySelector('.GalleryContainer');
+    this.galleryRowSelector = this.node.querySelectorAll('.GalleryRow');
+    this.imgList = this.node.getElementsByTagName('img');
+    this.captionsSelector = this.node.querySelector('.GalleryCaptions');
+    this.indexSelector = this.node.querySelector('.GalleryIndex');
+    this.lightboxSelector = this.node.querySelector('.Lightbox');
     this.lightBoxImg = this.lightboxSelector.getElementsByTagName('img')[0];
     this.lightboxCloseSelector = this.lightboxSelector.querySelector('.LightBoxClose');
     this.moveSlider = this.moveSlider.bind(this);
@@ -51,7 +51,7 @@ function LightBoxGallery(node) {
     }
     this.manageCaptions();
     this.manageIndex();
-    node.querySelector('.GalleryOpenLightbox').addEventListener('click', function () {
+    this.node.querySelector('.GalleryOpenLightbox').addEventListener('click', function () {
         self.openLightBox();
     });
 }
@@ -187,4 +187,6 @@ LightBoxGallery.prototype.openLightBox = function () {
         next.removeEventListener('click', nextSlide, false);
         prev.removeEventListener('click', prevSlide, false);
     }
-};
+}
+
+export default LightBoxGallery;

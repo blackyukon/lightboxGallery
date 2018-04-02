@@ -1,0 +1,10 @@
+.Gallery {
+    position: absolute;
+    height: 500px;
+    width: 700px;
+    overflow: hidden;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding-bottom: 200px;
+}
